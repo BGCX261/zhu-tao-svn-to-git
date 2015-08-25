@@ -1,0 +1,92 @@
+{% extends "base_edit.html" %}
+{% block current_title %}首页-欢迎访问{% endblock %}
+{% block csssheet %}<link rel="stylesheet" href="/site_media/css/edit.css" />{% endblock %}
+{% block check_js %}<script type="text/javascript" src="/site_media/js/edit.js"></script>{% endblock %}
+{% block jquery%}<script type="text/javascript" src="/site_media/js/jquery.js"></script>{% endblock %}
+{% block other_links %}
+<div class="other_links">
+<a href="{{HOST}}/logout/">退出</a>
+<a href="{{HOST}}/help/">帮助</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<form method="post" action="{{HOST}}/task/add/{{task.id}}">
+<font size="2px" color="blue">事务详情:</font><br/>
+名称:<input type="text" name="name" id="name" size="25" value="{{task.name}}" />
+<br/>
+备注:<textarea name="note" rows="8" cols="20" id="note">{{task.note}}</textarea>
+<br/>
+地点:<select name="place" id="place">
+{% if place_list %}
+{% for place in place_list %}
+<option selected="{% ifequal task.place place %}selected{% endifequal %}">{{place.name}}</option>
+{% endfor %}
+{% endif %}
+</select>
+<br/>
+
+分类:<select name="project" id="project">
+{% if project_list %}
+{% for project in project_list %}
+<option selected="{% ifequal task.project project %}selected{% endifequal %}">{{project.name}}</option>
+{% endfor %}
+{% endif %}
+</select>
+<br/>
+截止日期:<input type="radio" name="deadline_type" id="deadline_type">
+<input type="text" size="10" name="deadline_date" id="deadline_date" value='{{task.deadline|date:"Y-m-d"}}'/>
+<br/>
+提醒:通过<select id="reminder_type" name="reminder_type">
+<option>无提醒</option>
+<option>{{user.email}}</option>
+</select>
+在时间<select id="reminder_min" name="reminder_min">
+{% for m in min %}
+<option> {{m}} </option>
+{% endfor %}
+</select>时
+<select id="reminder_sec" name="reminder_sec">
+{% for s in sec %}
+<option> {{s}} </option>
+{% endfor %}
+</select>分
+<br/>
+重复方式:
+<input type="radio" id="repeat_type1" name="repeat_type" value="norepeat" checked>
+<label for="repeat_type1">不重复</label>
+<br/>
+<input type="radio" id="repeat_type2" name="repeat_type" value="everyday">
+<label for="repeat_type2">每天</label>
+<br/>
+<input type="radio" id="repeat_type3" name="repeat_type" value="everyweek">
+<label for="repeat_type3">每周</label>
+<select onfocus="make_checked('repeat_type3')" id="everyweek_day" name="everyweek_day">
+{% for wday in weekday %}
+<option>{{wday}}</option>
+{% endfor %}
+</select>
+<br/>
+<input type="radio" id="repeat_type4" name="repeat_type" value="everymonth">每月
+<select id="everymonth_day" onfocus="make_checked('repeat_type4');" name="everymonth_day">
+{% for mday in monthday %}
+<option>{{mday}}</option>
+{% endfor %}
+</select>日
+<br/>
+<input type="radio" id="repeat_type5" name="repeat_type" value="everyyear">每年
+<select id="everyyear_month" name="everyyear_month" onfocus="make_checked('repeat_type5')">
+{% for ymonth in yearmonth %}
+<option>{{ymonth}}</option>
+{% endfor %}
+</select>日
+<br/>
+
+
+
+<input type="submit" value="提交">
+<input type="button" value="取消">
+<div  style="text-align:right;float:right;"><input type="button" value="删除"></div>
+</form>
+{% endblock %}
+

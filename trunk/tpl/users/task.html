@@ -1,0 +1,15 @@
+{% extends "task/base.html" %}
+{% block current_title %}首页-欢迎访问{% endblock %}
+{% block csssheet %}<link rel="stylesheet" href="/site_media/index.css" />{% endblock %}
+{% block check_js %}<script type="text/javascript" src="/site_media/lib.js"</script>{% endblock %}
+<!-- login-->
+{% block login %}
+<form method="post" action="{{HOST}}/login/">
+<div name="login" id="login">
+用户名:<input type="text" name="username" id="user" onfocus="erase('user')" value="请输入用户名" /><br/>
+密码:<input type="password" name="password" value="" /><br/>
+<input type="submit" value="登录"/>
+<input type="button"  value="取消"/>
+</div>
+</form>
+{% endblock %}

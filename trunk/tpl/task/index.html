@@ -1,0 +1,40 @@
+{% extends "task/base.html" %}
+{% block current_title %}首页-欢迎访问{% endblock %}
+{% block csssheet %}<link rel="stylesheet" href="/site_media/index.css" />{% endblock %}
+{% block check_js %}<script type="text/javascript" src="/site_media/lib.js"</script>{% endblock %}
+
+<!-- other links start -->
+{% block other_links %}
+<div class="other_links">
+<a href="{{HOST}}/changelog/">网站更新</a>
+<a href="{{HOST}}/demo/">我想试试</a>
+</div>
+{% endblock %}
+<!-- other links end -->
+
+<!-- login-->
+{% block left %}
+<font color="blue" size="2px">我有账号了,我要登录:</font>
+<form method="post" action="{{HOST}}/login/">
+用户名:<input type="text" name="username" id="user" size="10" onfocus="erase('user')" value="请输入用户名" /><br/>
+密码:<input type="password" name="password" value="" size="10"/><br/>
+<input type="submit" value="登录"/>
+<input type="button"  value="取消"/>
+</form>
+{% endblock %}
+<!-- register -->
+{% block right %}
+<font color="blue" size="2px">我还没有账号,我要注册:</font>
+<form method="post" action="{{HOST}}/register/">
+用户名:<input type="text" name="username" value="请输入用户名" size="10" id="username" onfocus="erase('username')"/><br/>
+email:<input type="text" name="email" id="email" onfocus="erase('email')" size="10" value="请输入邮箱" /><br/>
+密码:<input type="password" name="password" value="" size="10"/><br/>
+再次输入密码:<input type="password" name="password2" value="" size="10"/><br/>
+<input type="submit" value="注册"/>
+<input type="button"  value="取消"/>
+</form>
+{% endblock %}
+
+
+
+

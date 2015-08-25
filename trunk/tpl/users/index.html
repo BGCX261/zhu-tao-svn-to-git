@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block current_title %}首页-欢迎访问{% endblock %}
+{% block csssheet %}<link rel="stylesheet" href="/site_media/css/index.css" />{% endblock %}
+{% block check_js %}<script type="text/javascript" src="/site_media/js/lib.js"></script>{% endblock %}
+{% block jquery %}<script type="text/javascript" src="/site_media/js/jquery.js"></script>{% endblock %}
+
+<!-- other links start -->
+{% block other_links %}
+<div class="other_links">
+<a href="{{HOST}}/changelog/">网站更新</a>
+<a href="{{HOST}}/demo/">我想试试</a>
+</div>
+{% endblock %}
+<!-- other links end -->
+
+<!-- login-->
+{% block left %}
+<!-- 输出的提示信息 -->
+<strong><font color="red" size="2px">{{INFO}}</font></strong><br/>
+<font color="blue" size="2px">我有账号了,我要登录:</font>
+<form method="post" action="{{HOST}}/login/">
+用户名:<input type="text" name="user" id="user" size="10" onfocus="erase('user')" value="请输入用户名" /><br/>
+密码:<input type="password" name="pass" id="pass" value="" size="10"/><br/>
+<input type="submit" value="登录"/>
+<input type="button"  value="取消"/>
+</form>
+{% endblock %}
+
+
+<!-- register -->
+<!-- 输出的提示信息 -->
+{% block right %}
+<strong><font color="red" size="2px">{{REG_INFO}}</font></strong><br/>
+<font color="blue" size="2px">我还没有账号,我要注册:</font>
+<form method="post" action="{{HOST}}/register/" onSubmit="return check_all('username', 'email','password','password2', 'any_error_alert');">
+
+<div id="username_error_alert" style="display:none;float:right;">
+<font color="red" size="2px">用户名格式不正确.</font>
+</div>
+用户名:<input type="text" name="username" value="" size="10" onblur="check_name('username', 'username_error_alert')" onfocus="hide_div('username_error_alert');hide_div('any_error_alert');" id="username" "/>
+<input type="button" value="检查用户名" onclick="isvalid('{{HOST}}', 'username', 'username_error_alert')" />
+<font color="green" size='1px'>以字母开始,包含字母,数字和下划线</font><br/>
+
+<div id="email_error_alert" style="display:none;float:right;">
+<font color="red" size="2px">邮箱格式不正确.</font>
+</div>
+
+email:<input type="text" name="email" id="email"  onfocus="hide_div('email_error_alert');hide_div('any_error_alert');" onblur="check_email('email', 'email_error_alert')" size="10" value=""/>
+<font color="green" size='1px'>填写常用的email,系统会发送相关提醒</font><br/>
+<div id="len_error_alert" style="display:none;float:right;">
+<font color="red" size="2px">密码长度小于6.</font>
+</div>
+
+密码:<input type="password" name="password" id="password" value="" onfocus="hide_div('len_error_alert');hide_div('equal_error_alert');hide_div('any_error_alert');" onblur="check_length('password', 6, 'len_error_alert')" size="10"/>
+<font color="green" size='1px'>密码长度大于等于6</font><br/>
+
+<div id="equal_error_alert" style="display:none;float:right;">
+<font color="red" size="2px">两次密码不相同.</font>
+</div>
+
+再次输入密码:<input type="password" name="password2" id="password2" value="" onfocus="hide_div('equal_error_alert');hide_div('any_error_alert');" onblur="check_equal('password','password2', 'equal_error_alert')" size="10"/><br/>
+
+<div id="any_error_alert" style="display:none;float:right;">
+<font color="red" size="2px"></font>
+</div>
+
+<input type="submit" value="注册" />
+<input type="button"  value="取消" onclick="erase('username');erase('password');erase('email');erase('password2');hide_div('equal_error_alert');hide_div('len_error_alert');hide_div('email_error_alert');"/>
+</form>
+{% endblock %}
+
+
+
+

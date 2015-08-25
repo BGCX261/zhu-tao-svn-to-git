@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dli XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dli/xhtml1-transitional.dli">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="keywords" content="GTD,个人管理,事务管理">
+<title>{% block current_title %}{% endblock %}</title>
+{% block csssheet %}<link rel="stylesheet" href="/site_media/css/index.css" />{% endblock %}
+{% block check_js %}{% endblock %}
+{% block jquery %}{% endblock %}
+</head>
+<body>
+
+<!-- div container start -->
+<div class="container">
+
+<!-- div header start -->
+<div class="header">
+
+<!-- div logo start -->
+<div id="logo" class="logo">
+<a href="{{HOST}}"><img src="/site_media/image/logo3.gif" width="80" height="70" alt="大蜜蜂欢迎你" title="大蜜蜂" border=0px/></a>
+<a href="{{HOST}}">damifeng.com</a>
+</div>
+<!-- div logo end -->
+
+<!-- div search start -->
+<div id="search" class="search">
+<form method="get" action="{{HOST}}/search/">
+<input type="text" name="keyword" size="10"/>
+<input type="submit" value="搜索"/>
+</form>
+</div>
+<!-- div search end -->
+
+<!-- other links start -->
+{% block other_links %}
+{% endblock %}
+<!-- other_links end -->
+
+</div>
+<!-- div header end -->
+
+<!-- div content start -->
+<div class="content">
+{% block content %}
+{% endblock %}
+</div>
+<!-- div content end -->
+
+<!-- div footer start -->
+<div class="footer">
+大蜜蜂 版权所有 2009
+</div>
+<!-- div footer end -->
+
+</div>
+<!-- div container end -->
+
+</body>
+</html>
+

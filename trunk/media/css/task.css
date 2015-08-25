@@ -1,0 +1,64 @@
+body
+{
+    text-align:center;
+}
+div.container
+{
+    margin-right:auto;
+    margin-left:auto;
+    width:70%;
+    height:100%;
+    line-height:150%;   /* 行距 */
+}
+div.header
+{
+    height:80px;
+    margin-right:auto;
+    margin-left:auto;
+    border-bottom: 1px solid green ;
+}
+div.logo
+{
+    float:left;
+    color:blue;
+}
+div.search
+{
+    margin-top:20px;
+}
+div.other_links
+{
+    float:right;
+    color:blue;
+    font-size:14px;
+}
+div.content
+{
+    padding:1em;
+}
+div.footer
+{
+    padding:0.5em;
+    color : white;
+    clear:left;
+    background-color:gray;
+}
+div.left
+{
+    text-align:left;
+    line-height:300%;
+    clear:left;
+    float:left;
+    width:60%;
+    margin:0;
+    padding :2em;
+    border-right:1px solid green;
+}
+div.right
+{
+    text-align:left;
+    line-height:300%;
+    margin-left:73%;
+    padding:1em;
+}
+    

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block current_title %}首页-欢迎访问{% endblock %}
+{% block csssheet %}<link rel="stylesheet" href="/site_media/css/task.css" />{% endblock %}
+{% block check_js %}<script type="text/javascript" src="/site_media/js/task.js"></script>{% endblock %}
+{% block jquery%}<script type="text/javascript" src="/site_media/js/jquery.js"></script>{% endblock %}
+{% block other_links %}
+<div class="other_links">
+<a href="{{HOST}}/logout/">退出</a>
+<a href="{{HOST}}/help/">帮助</a>
+</div>
+{% endblock %}
+
+{% block left %}
+<select name="task_type" id="task_type">
+{% for place in place_list %}
+<option>{{place.name}}</option>
+{% endfor %}
+<option>新建地点</option>
+<option>管理地点</option>
+</select>
+<a href="#" onclick="show_all()">当前任务</a>
+{% if task_list %}
+{% for task in task_list %}
+<div id="task_list">
+<dl><dt>
+<input type="checkbox" title="标记完成" />
+<a href="{{HOST}}/task/edit/{{task.id}}">{{task.name}}</a>
+<a href="#" onclick="toggle_div('task_note{{forloop.counter}}')"><font color="blue" size="2px">备注</font></a>
+<div id="task_note{{forloop.counter}}" style="display:none;">
+{{ task.note }}
+</div>
+</dt></dl>
+</div>
+{% endfor %}
+{% else %}
+<p>你还没有待处理的事务.</p>
+{% endif %}
+
+<div id="new_task">
+<input type="text" name="newtask" id="newtask" size="20" onfocus="setbg(this.id,'yellow')" onblur="setbg(this.id, 'white')" /><input type="button" onclick="addtask()" value="新任务">
+<br/>
+<select id="task_place" name="task_place">
+{% for place in place_list %}
+<option>{{place.name}}</option>
+{% endfor %}
+<option>新建地点</option>
+<option>管理地点</option>
+</select>
+
+<select id="task_proj" name="task_proj">
+{% for project in project_list %}
+<option>{{project.name}}</option>
+{% endfor %}
+</select>
+
+<select id="task_time" name="task_time">
+<option>现在</option>
+<option>明天</option>
+</select>
+
+<select id="task_color" name="task_color">
+<option style="color:black">黑色</option>
+<option style="color:red">红色</option>
+<option style="color:blue">蓝色</option>
+<option style="color:green">绿色</option>
+<option style="color:purple">紫色</option>
+<option style="color:gray">灰色</option>
+</select>
+
+</div>
+
+{% endblock %}
+
+
+{% block right %}
+你的事务分类:
+{% if project_list %}
+{% for project in project_list %}
+<a href="{{HOST}}/project/show/{{project.id}}/">{{project.name}}</a>
+{% endfor %}
+{% else %}
+<p>你还有事务分类</p>
+{% endif %}
+{% endblock %}
